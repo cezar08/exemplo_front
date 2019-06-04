@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'books-module',
     loadChildren: './books/books-routing.module#BooksRoutingModule'
+  }, 
+  {
+    path: 'authors-module',
+    loadChildren: './authors/authors-routing.module#AuthorsRoutingModule'
   }
 ];
 
