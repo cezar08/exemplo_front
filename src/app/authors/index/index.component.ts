@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService } from '../../services/author.service';
+import { Author } from '../../models/author'
 
 @Component({
   selector: 'app-index',
@@ -9,11 +10,13 @@ import { AuthorService } from '../../services/author.service';
 })
 export class IndexComponent implements OnInit {
 
+  public authors = new Array<Author>();
+
   constructor(private _authorService: AuthorService) { }
 
   ngOnInit() {
     this._authorService.getAll().subscribe(data => {
-      console.log(data)
+      this.authors = data
     })
 
   }
