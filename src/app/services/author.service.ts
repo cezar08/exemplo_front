@@ -13,4 +13,8 @@ export class AuthorService {
   getAll():Observable<Author[]> {
     return this._http.get<Author[]>('http://localhost:3000/authors');
   }
+
+  create(author: Author):Observable<Author> {
+    return this._http.post<Author>('http://localhost:3000/authors', author);
+  }
 }
