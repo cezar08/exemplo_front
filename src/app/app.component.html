@@ -1,5 +1,10 @@
-<a routerLink="/books">Books</a> | 
-<a routerLink="/authors">Authors</a>
+<button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="/books">Books</a> | 
+        <a mat-menu-item routerLink="/authors">Authors</a>
+</mat-menu>
 
 
 <router-outlet></router-outlet>

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-save',
   templateUrl: './save.component.html',
-  styleUrls: ['./save.component.sass'],
+  styleUrls: ['./save.component.css'],
   providers: [AuthorService]
 })
 export class SaveComponent implements OnInit {

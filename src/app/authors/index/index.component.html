@@ -1,43 +1,35 @@
 <div>
-  <a routerLink="/authors/save">New Author</a>
+    <a mat-raised-button routerLink="/authors/save">New Author</a>  
 </div>
+<div class="mat-elevation-z8">
+  <table style="width: 100%;" mat-table [dataSource]="dataSource">
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let author of authors; let key = index">
-      <td>{{author.id}}</td>
-      <td>{{author.first_name}}</td>
-      <td>{{author.last_name}}</td>
-      <td><a (click)="setBooks(author.Books)">Livros</a></td>
-      <td><a href="/authors/save/{{author.id}}">Editar</a></td>
-      <td><a (click)="delete(author.id, key)">Excluir</a></td>
-    </tr>
-  </tbody>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
 
-</table>
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+    </ng-container>
 
-<table *ngIf="books.length > 0">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Title</th>
-      <th>issn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let book of books">
-      <td>{{book.id}}</td>
-      <td>{{book.title}}</td>
-      <td>{{book.issn}}</td>
-    </tr>
-  </tbody>
-  
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+    </ng-container>
 
-</table>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> 
+          <a routerLink="/authors/save/{{element.id}}"><mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon> </a>
+          <a (click)="delete(element.id)"><mat-icon aria-hidden="false" aria-label="Excluir">delete</mat-icon> </a>
+        </td>
+      </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
